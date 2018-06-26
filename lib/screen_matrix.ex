@@ -29,7 +29,7 @@ defmodule ScreenMatrix do
 
   @impl true
   def handle_call({:process, matrix}, _from, data = {0, 0}) do
-    if empty?(matrix) == true do
+    if empty?(matrix) do
       {:reply, "", data}
     else
       {:reply, "", get_points(matrix)}
@@ -37,7 +37,7 @@ defmodule ScreenMatrix do
   end
 
   def handle_call({:process, matrix}, _from, {x, y}) do
-    if empty?(matrix) == true do
+    if empty?(matrix) do
       {:reply, "D(#{x},#{y})", {0, 0}}
     else
       {:reply, "", get_points(matrix)}
