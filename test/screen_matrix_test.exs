@@ -60,6 +60,24 @@ defmodule ScreenMatrixTest do
     assert "D(1,2)" == ScreenMatrix.process(@empty_matrix)
   end
 
+  test "touch in the middle" do
+    start_matrix()
+    assert "" == ScreenMatrix.process(List.duplicate(0, 44) ++ [1] ++ List.duplicate(0, 45))
+    assert "D(5,5)" == ScreenMatrix.process(@empty_matrix)
+  end
+
+  test "touch in the right upper corner" do
+    start_matrix()
+    assert "" == ScreenMatrix.process(List.duplicate(0, 99) ++ [1])
+    assert "D(10,10)" == ScreenMatrix.process(@empty_matrix)
+  end
+
+  test "touch in the left upper corner" do
+    start_matrix()
+    assert "" == ScreenMatrix.process(List.duplicate(0, 90) ++ [1] ++ List.duplicate(0, 9))
+    assert "D(1,10)" == ScreenMatrix.process(@empty_matrix)
+  end
+
   def start_matrix do
     {:ok, _pid} = ScreenMatrix.new()
   end

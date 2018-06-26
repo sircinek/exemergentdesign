@@ -45,7 +45,7 @@ defmodule ScreenMatrix do
   end
 
   defp empty?(matrix) do
-    not Enum.any?(matrix, &(&1 != 0))
+    Enum.all?(matrix, &(&1 == 0))
   end
 
   defp get_points(matrix) do
